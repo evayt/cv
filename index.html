@@ -3,22 +3,24 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>个人简历 — EVAYT</title>
+  <title>贺昱婷 - 个人简历</title>
+  <meta name="description" content="贺昱婷的个人简历，包含教育经历、工作经历、荣誉奖项、证书及设计技能。" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="#">EVAYT</a>
+      <a class="brand" href="#home">HYT</a>
       <nav class="nav" id="nav">
-        <a href="#about">关于</a>
-        <a href="#skills">技能</a>
+        <a href="#about">关于我</a>
+        <a href="#education">教育</a>
         <a href="#experience">经历</a>
-        <a href="#projects">项目</a>
-        <a href="#contact">联系方式</a>
+        <a href="#honors">荣誉</a>
+        <a href="#skills">技能</a>
+        <a href="#contact">联系</a>
       </nav>
       <button class="nav-toggle" id="navToggle" aria-label="切换导航">
         <span></span><span></span><span></span>
@@ -29,35 +31,58 @@
   <main>
     <section class="hero" id="home">
       <div class="container hero-grid">
-        <div class="hero-info reveal">
-          <h1>你好，我是 EVAYT</h1>
-          <p class="lead">前端工程师 · 交互设计 · 用户体验。热爱用简洁优美的界面讲故事并把想法变成可用产品。</p>
+        <div class="hero-copy">
+          <p class="eyebrow">视觉设计 · 活动策划 · 教育支持</p>
+          <h1>贺昱婷</h1>
+          <p class="lead">热爱设计与教育，在视觉创作、行政协同、校园文化活动策划及品牌传播方面具备扎实基础。拥有平面设计、海报制作、活动组织与文档管理经验，能够兼顾创意表达与实际执行效率。</p>
           <div class="hero-actions">
-            <a class="btn primary" href="#projects">查看项目</a>
-            <a class="btn" href="#contact">联系我</a>
+            <a class="btn primary" href="#contact">联系我</a>
+            <a class="btn" href="#experience">查看经历</a>
+          </div>
+          <ul class="quick-info">
+            <li>
+              <span>学历</span>
+              <strong>硕士在读</strong>
+            </li>
+            <li>
+              <span>专业</span>
+              <strong>艺术科技与商业</strong>
+            </li>
+            <li>
+              <span>手机</span>
+              <strong>+86-17535135127</strong>
+            </li>
+            <li>
+              <span>邮箱</span>
+              <strong>heyuting2026@163.com</strong>
+            </li>
+          </ul>
+
+          <div class="hero-metrics" aria-label="能力概览">
+            <div class="metric-card">
+              <strong>6+</strong>
+              <span>设计软件熟练度</span>
+            </div>
+            <div class="metric-card">
+              <strong>3+</strong>
+              <span>校园/企业活动执行</span>
+            </div>
+            <div class="metric-card">
+              <strong>2</strong>
+              <span>竞赛获奖项目</span>
+            </div>
           </div>
         </div>
-        <div class="hero-card reveal">
-          <div class="avatar" aria-hidden="true">
-            <!-- 简洁的SVG占位头像 -->
-            <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="g" x1="0" x2="1">
-                  <stop offset="0" stop-color="#6C5CE7" />
-                  <stop offset="1" stop-color="#00B894" />
-                </linearGradient>
-              </defs>
-              <rect width="120" height="120" rx="16" fill="url(#g)" />
-              <circle cx="60" cy="46" r="22" fill="rgba(255,255,255,0.12)" />
-              <rect x="20" y="78" width="80" height="16" rx="4" fill="rgba(255,255,255,0.08)" />
-            </svg>
-          </div>
-          <div class="card-body">
-            <h3>EVAYT</h3>
-            <p class="muted">前端工程师 & 设计爱好者</p>
-            <ul class="meta">
-              <li><strong>地点：</strong>上海</li>
-              <li><strong>邮箱：</strong>youremail@example.com</li>
+
+        <div class="hero-panel" aria-label="个人信息卡片">
+          <div class="profile-badge">HYT</div>
+          <div class="profile-card">
+            <h3>个人信息</h3>
+            <ul>
+              <li><span>姓名</span><strong>贺昱婷</strong></li>
+              <li><span>院校</span><strong>岭南大学</strong></li>
+              <li><span>方向</span><strong>艺术科技与商业</strong></li>
+              <li><span>英语</span><strong>雅思 6.5</strong></li>
             </ul>
           </div>
         </div>
@@ -66,81 +91,177 @@
 
     <section class="panel" id="about">
       <div class="container">
-        <h2 class="section-title reveal">关于我</h2>
-        <div class="card reveal">
-          <p>我有多年前端开发与产品设计经验，熟悉现代前端技术栈（HTML/CSS/JavaScript、React），关注交互细节与性能优化，擅长将复杂的需求拆解成清晰、可维护的代码和界面。</p>
+        <div class="section-heading">
+          <h2 class="section-title">关于我</h2>
+          <span class="section-tag">Design · Communication · Planning</span>
+        </div>
+        <div class="card">
+          <p>我具备良好的艺术审美与沟通协调能力，能够在视觉设计、文案表达与活动执行之间建立有效桥梁。大学期间参与多项设计竞赛和校园文化活动，积累了对品牌视觉、版式设计、活动策划及团队协作的理解与实践经验，注重细节与成果落地。</p>
+          <div class="tags">
+            <span>平面设计</span>
+            <span>海报设计</span>
+            <span>活动策划</span>
+            <span>文案与传播</span>
+            <span>团队协作</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="panel" id="skills">
+    <section class="panel" id="education">
       <div class="container">
-        <h2 class="section-title reveal">技能特长</h2>
-        <div class="skills-grid">
-          <div class="skill reveal">
-            <h3>前端开发</h3>
-            <p>HTML5 · CSS3 · JavaScript · React · Vite</p>
-          </div>
-          <div class="skill reveal">
-            <h3>UI / 交互</h3>
-            <p>Figma · 原型设计 · 动效实现 · 可用性测试</p>
-          </div>
-          <div class="skill reveal">
-            <h3>工程化</h3>
-            <p>TypeScript · CI/CD · 单元测试 · 性能优化</p>
-          </div>
-          <div class="skill reveal">
-            <h3>其他</h3>
-            <p>Node.js · GraphQL · Docker</p>
-          </div>
+        <div class="section-heading">
+          <h2 class="section-title">教育经历</h2>
+          <span class="section-tag">学习背景</span>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="time">2024.09 - 至今</div>
+            <div>
+              <h3>岭南大学</h3>
+              <p class="meta">艺术科技与商业理学硕士</p>
+              <p>在读期间持续加强设计思维、创意商业化能力与跨学科协作能力，拓展视觉表达与文化传播的应用方向。</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div class="time">2017.09 - 2021.07</div>
+            <div>
+              <h3>山西应用科技学院</h3>
+              <p class="meta">视觉传达设计艺术学士</p>
+              <p>GPA: 3.65；82.31</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
     <section class="panel" id="experience">
       <div class="container">
-        <h2 class="section-title reveal">工作经历</h2>
+        <div class="section-heading">
+          <h2 class="section-title">工作经历</h2>
+          <span class="section-tag">实践积累</span>
+        </div>
+
         <div class="timeline">
-          <article class="timeline-item reveal">
-            <h3>高级前端工程师 — 某科技公司</h3>
-            <p class="muted">2022.05 - 至今</p>
-            <p>负责公司核心产品的前端架构与性能优化，推动组件化与设计系统建设，改善用户关键路径的加载体验。</p>
+          <article class="timeline-item">
+            <div class="time">2021.12 - 2023.07</div>
+            <div>
+              <h3>山西盛世创想科技有限公司</h3>
+              <p class="meta">行政文员</p>
+              <ul class="bullet-list">
+                <li>负责企业制度的制定、优化以及企业文化建设工作。</li>
+                <li>协助开展员工信息管理与员工福利相关事务。</li>
+                <li>主导策划并落地执行公司各类活动。</li>
+                <li>根据部门需求，运用 PS、AI 软件完成海报、企业文化墙等视觉物料设计。</li>
+              </ul>
+            </div>
           </article>
-          <article class="timeline-item reveal">
-            <h3>前端开发工程师 — 某互联网企业</h3>
-            <p class="muted">2018.09 - 2022.04</p>
-            <p>参与多个B端/移动Web项目开发，搭建可复用组件库，并结合设计团队实现高保真交互效果。</p>
+
+          <article class="timeline-item">
+            <div class="time">2021.03 - 2021.05</div>
+            <div>
+              <h3>大同市国贸汽车销售有限公司</h3>
+              <p class="meta">实习</p>
+              <ul class="bullet-list">
+                <li>负责客户信息录入系统，并整理车主档案。</li>
+                <li>负责系统内销售数据核对工作。</li>
+                <li>负责编制各类业务报表，包括商用车日报、销售清单、本地市场价格报表等。</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="time">2019.07 - 2019.08</div>
+            <div>
+              <h3>大同早期教育学校</h3>
+              <p class="meta">美术老师</p>
+              <ul class="bullet-list">
+                <li>独立负责小学低段（1-3 年级）美术教学工作，完成素描、水彩、手工制作、创意绘画的课程备课与实操指导。</li>
+                <li>有效维护课堂纪律，运用游戏、故事等互动方式激发低龄学生的学习兴趣，提升课堂参与度。</li>
+                <li>关注学生个体差异，针对不同学习需求与创作能力的孩子开展一对一辅导与鼓励，培养学生的艺术感知力与自信心。</li>
+                <li>协助策划并筹办“暑期美术成果展”、班级文化墙等校园文化活动，营造浓厚的校园美育氛围。</li>
+              </ul>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="panel" id="projects">
+    <section class="panel" id="honors">
       <div class="container">
-        <h2 class="section-title reveal">项目展示</h2>
-        <div class="projects-grid">
-          <div class="project-card reveal" tabindex="0">
-            <div class="project-meta">
-              <h3>设计系统</h3>
-              <p class="muted">组件库与样式规范</p>
-            </div>
-            <p class="project-desc">为内部产品打造的一套轻量化设计系统，包含响应式组件、主题切换与无障碍支持。</p>
-            <div class="project-actions">
-              <button class="btn" data-project="design-system">查看详情</button>
-              <a class="muted-link" href="#">GitHub</a>
-            </div>
-          </div>
+        <div class="section-heading">
+          <h2 class="section-title">荣誉与奖项</h2>
+          <span class="section-tag">竞赛与荣誉</span>
+        </div>
+        <div class="honors-grid">
+          <article class="honor-item">
+            <h3>第一届“大同好礼”文化旅游创意设计大赛</h3>
+            <p>旅游产品创意设计类优秀奖（2023.03）</p>
+          </article>
+          <article class="honor-item">
+            <h3>第三届山西省文化创意设计大赛</h3>
+            <p>品牌及包装创意设计类学生组铜奖（2021.11）</p>
+          </article>
+          <article class="honor-item">
+            <h3>第十七届山西设计奖学科竞赛</h3>
+            <p>优秀奖（2 个奖项，2020.11）</p>
+          </article>
+          <article class="honor-item">
+            <h3>中国大学生广告艺术节学院奖</h3>
+            <p>产品包装设计类优秀奖（2020.08）</p>
+          </article>
+          <article class="honor-item">
+            <h3>第二届全国青年运动会</h3>
+            <p>赛会志愿者服务证书（2019.08）</p>
+          </article>
+          <article class="honor-item">
+            <h3>2018年度优秀共青团干部</h3>
+            <p>荣誉称号（2019.05）</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-          <div class="project-card reveal" tabindex="0">
-            <div class="project-meta">
-              <h3>仪表盘平台</h3>
-              <p class="muted">数据可视化</p>
-            </div>
-            <p class="project-desc">为运营团队搭建的仪表盘，支持动态过滤、拖拽布局与导出功能。</p>
-            <div class="project-actions">
-              <button class="btn" data-project="dashboard">查看详情</button>
-              <a class="muted-link" href="#">演示</a>
-            </div>
+    <section class="panel" id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <h2 class="section-title">技能与资质</h2>
+          <span class="section-tag">能力概览</span>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-box">
+            <h3>设计与多媒体软件</h3>
+            <ul>
+              <li>Adobe Photoshop</li>
+              <li>Adobe Illustrator</li>
+              <li>Adobe InDesign</li>
+              <li>Adobe Premiere Pro</li>
+              <li>Canva</li>
+            </ul>
+          </div>
+          <div class="skill-box">
+            <h3>办公与数据工具</h3>
+            <ul>
+              <li>Word</li>
+              <li>Excel</li>
+              <li>PowerPoint</li>
+            </ul>
+          </div>
+          <div class="skill-box">
+            <h3>资质证书</h3>
+            <ul>
+              <li>普通话水平测试二级甲等</li>
+              <li>雅思 6.5 分</li>
+            </ul>
+          </div>
+          <div class="skill-box">
+            <h3>核心能力</h3>
+            <ul>
+              <li>视觉创作</li>
+              <li>版式排版设计</li>
+              <li>简易视频剪辑</li>
+              <li>商务文档制作</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -148,25 +269,39 @@
 
     <section class="panel" id="contact">
       <div class="container">
-        <h2 class="section-title reveal">联系方式</h2>
+        <div class="section-heading">
+          <h2 class="section-title">联系方式</h2>
+          <span class="section-tag">Get in touch</span>
+        </div>
         <div class="contact-grid">
-          <form class="contact-form reveal" id="contactForm">
-            <label>姓名<input type="text" name="name" placeholder="你的名字" required></label>
-            <label>邮箱<input type="email" name="email" placeholder="you@example.com" required></label>
-            <label>信息<textarea name="message" rows="5" placeholder="简短留言"></textarea></label>
+          <form class="contact-form" id="contactForm">
+            <h3>留言</h3>
+            <label>姓名
+              <input type="text" name="name" placeholder="请输入您的姓名" required>
+            </label>
+            <label>邮箱
+              <input type="email" name="email" placeholder="请输入您的邮箱" required>
+            </label>
+            <label>信息
+              <textarea name="message" rows="5" placeholder="请输入您的留言或需求"></textarea>
+            </label>
             <div class="form-actions">
-              <button class="btn primary" type="submit">发送邮件</button>
+              <button class="btn primary" type="submit">发送</button>
               <button class="btn" type="button" id="copyEmail">复制邮箱</button>
             </div>
-            <p class="muted note">此表单为演示，实际提交建议接入后端或使用第三方表单服务。</p>
+            <p class="muted note">此表单为演示，如需真实投递请接入邮件服务或个人站点后端。</p>
           </form>
-          <div class="contact-info reveal">
+
+          <div class="info-card">
             <h3>直接联系</h3>
-            <p class="muted">邮箱：youremail@example.com</p>
-            <p class="muted">电话：+86 138 0000 0000</p>
+            <ul class="contact-list">
+              <li><span>手机</span><strong>+86-17535135127</strong></li>
+              <li><span>邮箱</span><strong>heyuting2026@163.com</strong></li>
+              <li><span>所在地</span><strong>山西 / 广州</strong></li>
+            </ul>
             <div class="social">
-              <a href="#" aria-label="GitHub">GitHub</a>
-              <a href="#" aria-label="LinkedIn">LinkedIn</a>
+              <a href="mailto:heyuting2026@163.com">Email</a>
+              <a href="tel:+8617535135127">电话</a>
             </div>
           </div>
         </div>
@@ -176,17 +311,10 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p>© 2026 EVAYT — 简历网页演示</p>
+      <p>© 2026 贺昱婷 · 个人简历</p>
     </div>
   </footer>
 
-  <div id="projectModal" class="modal" aria-hidden="true">
-    <div class="modal-body" role="dialog" aria-modal="true">
-      <button class="modal-close" id="modalClose" aria-label="关闭">×</button>
-      <div id="modalContent"></div>
-    </div>
-  </div>
-
-  <script src="/script.js" defer></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
