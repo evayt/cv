@@ -995,7 +995,7 @@
           <a href="#contact">联系</a>
         </nav>
 
-        <a href="#contact" class="button">打开简历</a>
+        <a href="./%E8%B4%BA%E6%98%B1%E5%A9%B7%203062566.pdf" target="_blank" rel="noreferrer" class="button">打开简历</a>
       </div>
     </header>
 
@@ -1010,8 +1010,8 @@
             </p>
 
             <div class="hero-actions">
-              <a href="#contact" class="button">打开简历</a>
-              <a href="#portfolio" class="button-secondary">查看作品</a>
+              <a href="./%E8%B4%BA%E6%98%B1%E5%A9%B7%203062566.pdf" target="_blank" rel="noreferrer" class="button">打开简历</a>
+              <a href="./Atb%20%E4%BD%9C%E5%93%81%E9%9B%86_compressed.pdf" target="_blank" rel="noreferrer" class="button-secondary">查看作品</a>
             </div>
 
             <div class="hero-trust">视觉设计 · 活动策划 · 教育支持</div>
@@ -1254,8 +1254,22 @@
       const jobBadge = document.querySelector('.hero-trust');
       if (jobBadge) jobBadge.textContent = profile.title || '视觉设计 · 活动策划 · 教育支持';
 
-      const resumeLink = document.querySelector('#contact a.button');
-      if (resumeLink) resumeLink.href = resume.file || '#';
+      const resumeFile = resume.file || './%E8%B4%BA%E6%98%B1%E5%A9%B7%203062566.pdf';
+      const portfolioFile = (data.portfolio && data.portfolio[0] && data.portfolio[0].href) || './Atb%20%E4%BD%9C%E5%93%81%E9%9B%86_compressed.pdf';
+
+      document.querySelectorAll('a').forEach((link) => {
+        const text = (link.textContent || '').trim();
+        if (text.includes('打开简历')) {
+          link.href = resumeFile;
+          link.target = '_blank';
+          link.rel = 'noreferrer';
+        }
+        if (text.includes('查看作品')) {
+          link.href = portfolioFile;
+          link.target = '_blank';
+          link.rel = 'noreferrer';
+        }
+      });
 
       const phoneEl = document.querySelector('#contact-phone');
       const emailEl = document.querySelector('#contact-email');
