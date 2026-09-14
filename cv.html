@@ -1,0 +1,1324 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ritovex — Creative Agency</title>
+  <meta name="description" content="Creative agency landing page recreation inspired by ritovex.webflow.io." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #111111;
+      --bg-2: #191919;
+      --panel: #f3efe7;
+      --panel-2: #ece1d8;
+      --card: #f7f3ee;
+      --text: #171514;
+      --text-soft: #5d544f;
+      --muted: #a7a29d;
+      --line: rgba(23, 21, 20, 0.12);
+      --orange: #f7a35a;
+      --orange-2: #f0a36d;
+      --orange-3: #ffbf80;
+      --white: #ffffff;
+      --shadow: 0 28px 60px rgba(16, 14, 13, 0.18);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --container: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Manrope', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .page-shell {
+      min-height: 100vh;
+      background: var(--bg);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(17, 17, 17, 0.8);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .nav {
+      min-height: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--orange), #f7c889);
+      color: #1e1a17;
+      font-size: 0.9rem;
+      font-weight: 900;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.95rem;
+      letter-spacing: -0.02em;
+    }
+
+    .main-nav a {
+      opacity: 0.88;
+      transition: opacity 0.2s ease;
+    }
+
+    .main-nav a:hover,
+    .main-nav a:focus-visible {
+      opacity: 1;
+    }
+
+    .button,
+    .button-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 24px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: 1px solid transparent;
+      letter-spacing: -0.02em;
+    }
+
+    .button {
+      background: linear-gradient(135deg, #f7b57a, #f0a254 55%, #ef8a4b);
+      color: #1a120d;
+      box-shadow: 0 18px 30px rgba(241, 167, 99, 0.28);
+    }
+
+    .button-secondary {
+      border-color: rgba(255, 255, 255, 0.16);
+      background: rgba(255,255,255,0.03);
+      color: var(--white);
+    }
+
+    .button:hover,
+    .button-secondary:hover,
+    .button:focus-visible,
+    .button-secondary:focus-visible {
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top left, rgba(255, 170, 98, 0.18), transparent 30%),
+        linear-gradient(180deg, #0f0f0f 0%, #121212 40%, #111111 100%);
+      padding: 54px 0 30px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 120px;
+      background: linear-gradient(180deg, rgba(17,17,17,0), rgba(17,17,17,0.85));
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+      gap: clamp(24px, 4vw, 48px);
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-copy {
+      max-width: 620px;
+      width: 100%;
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--orange-3);
+      font-size: 0.88rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 0;
+      max-width: 640px;
+      font-size: clamp(3rem, 4vw, 6rem);
+      line-height: 0.94;
+      letter-spacing: -0.08em;
+      color: #f8f5f0;
+    }
+
+    .hero-copy p {
+      max-width: 630px;
+      margin-top: 24px;
+      color: rgba(255,255,255,0.75);
+      font-size: clamp(1rem, 1.5vw, 1.14rem);
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .hero-trust {
+      margin-top: 36px;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.72);
+    }
+
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(70px, 1fr));
+      gap: 18px;
+      margin-top: 22px;
+      max-width: 640px;
+    }
+
+    .logo-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 68px;
+      padding: 12px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.8);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 720px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .hero-card {
+      position: relative;
+      width: min(100%, 460px);
+      min-height: 620px;
+      margin-left: auto;
+      padding: 18px 18px 14px;
+      background: linear-gradient(180deg, rgba(24, 22, 20, 0.8), rgba(31, 27, 25, 0.96));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 36px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 18px 18px auto auto;
+      width: 140px;
+      height: 140px;
+      border-radius: 36px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .hero-card-image {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: clamp(320px, 42vw, 480px);
+      border-radius: 30px;
+      overflow: hidden;
+      background: #d9d4d0;
+    }
+
+    .hero-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-badge {
+      position: absolute;
+      top: 42px;
+      right: 38px;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 118px;
+      min-height: 54px;
+      padding: 0 18px;
+      border-radius: 999px;
+      background: rgba(18,15,14,0.48);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--white);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+    }
+
+    .mini-panel {
+      position: relative;
+      z-index: 2;
+      margin-top: 18px;
+      padding: 18px 20px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+    }
+
+    .mini-panel-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      color: rgba(255,255,255,0.9);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .mini-panel-top .equals {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(247, 163, 90, 0.12);
+      color: var(--orange-3);
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .mini-panel-body {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .mini-stat {
+      padding: 14px 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+    }
+
+    .mini-stat strong {
+      display: block;
+      font-size: 1.2rem;
+      letter-spacing: -0.05em;
+      color: var(--white);
+    }
+
+    .mini-stat span {
+      display: block;
+      margin-top: 4px;
+      color: rgba(255,255,255,0.66);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    section.section {
+      padding: 110px 0;
+    }
+
+    .section-sand {
+      background: linear-gradient(180deg, #f5efe9 0%, #f3efe7 100%);
+      color: var(--text);
+    }
+
+    .section-dark {
+      background: #171716;
+      color: var(--white);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 38px;
+    }
+
+    .section-kicker {
+      margin: 0 0 18px;
+      color: var(--orange-2);
+      font-size: 0.83rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .section-header h2 {
+      margin: 0;
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      line-height: 0.98;
+      letter-spacing: -0.08em;
+      color: inherit;
+    }
+
+    .section-header h2 span {
+      display: inline-block;
+      color: var(--orange-2);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .about-copy {
+      color: var(--text-soft);
+      font-size: 1.08rem;
+      line-height: 1.9;
+    }
+
+    .about-copy p {
+      margin: 0;
+    }
+
+    .image-stack {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .image-stack figure {
+      margin: 0;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 28px 50px rgba(15, 12, 11, 0.12);
+      background: #d9d4d2;
+    }
+
+    .image-stack img {
+      height: 100%;
+      min-height: 300px;
+      object-fit: cover;
+    }
+
+    .image-stack .tall {
+      min-height: 430px;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 36px;
+    }
+
+    .stat-card {
+      position: relative;
+      padding: 26px 22px 20px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255,255,255,0.28);
+      color: var(--text);
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, rgba(247,163,90,0.12), transparent 60%);
+      pointer-events: none;
+    }
+
+    .stat-card strong {
+      position: relative;
+      display: block;
+      font-size: clamp(2.2rem, 3vw, 3rem);
+      line-height: 1;
+      letter-spacing: -0.08em;
+      color: #201c1a;
+    }
+
+    .stat-card span {
+      position: relative;
+      display: block;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      letter-spacing: -0.02em;
+    }
+
+    .service-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .service-item {
+      display: grid;
+      grid-template-columns: 84px 1fr auto;
+      gap: 20px;
+      align-items: center;
+      padding: 22px 22px 20px;
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .service-index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 68px;
+      height: 68px;
+      border-radius: 18px;
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -0.08em;
+      color: var(--orange-3);
+      background: rgba(247,163,90,0.08);
+      border: 1px solid rgba(247,163,90,0.12);
+    }
+
+    .service-item h3 {
+      margin: 0 0 8px;
+      font-size: clamp(1.4rem, 2vw, 2rem);
+      line-height: 1.1;
+      letter-spacing: -0.06em;
+    }
+
+    .service-item p {
+      margin: 0;
+      color: rgba(255,255,255,0.68);
+      line-height: 1.7;
+      font-size: 1.02rem;
+    }
+
+    .service-arrow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--orange-3);
+    }
+
+    .portfolio-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .portfolio-row {
+      display: grid;
+      grid-template-columns: 0.8fr 1.5fr 0.6fr 0.3fr;
+      gap: 18px;
+      align-items: center;
+      padding: 22px 18px;
+      border-radius: 24px;
+      border: 1px solid rgba(23,21,20,0.08);
+      background: rgba(255,255,255,0.35);
+      color: var(--text);
+    }
+
+    .portfolio-row strong {
+      color: #201d1b;
+      font-size: 1.1rem;
+    }
+
+    .portfolio-row .type {
+      color: var(--text-soft);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+    }
+
+    .portfolio-row .meta {
+      color: var(--text-soft);
+      font-size: 0.9rem;
+    }
+
+    .portfolio-row .title {
+      font-size: clamp(1.5rem, 2vw, 2.1rem);
+      line-height: 1.1;
+      letter-spacing: -0.06em;
+      color: #1d1715;
+    }
+
+    .portfolio-row .summary {
+      color: var(--text-soft);
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    .portfolio-row .cta {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .text-link::after {
+      content: "→";
+      color: var(--orange-2);
+      font-size: 1.3rem;
+      line-height: 1;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .process-card {
+      position: relative;
+      padding: 28px 24px 20px;
+      border-radius: 28px;
+      background: rgba(255,255,255,0.3);
+      border: 1px solid var(--line);
+      color: var(--text);
+      overflow: hidden;
+    }
+
+    .process-card::before {
+      content: "";
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      right: -26px;
+      top: -28px;
+      border-radius: 50%;
+      background: rgba(247,163,90,0.08);
+      pointer-events: none;
+    }
+
+    .process-icon {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(247,163,90,0.16), rgba(255,255,255,0.5));
+      border: 1px solid rgba(247,163,90,0.18);
+      color: var(--orange-2);
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+    }
+
+    .process-step {
+      position: relative;
+      z-index: 1;
+      display: inline-block;
+      margin-bottom: 8px;
+      color: var(--orange-2);
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .process-card h3 {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 8px;
+      font-size: clamp(1.6rem, 2vw, 2.1rem);
+      line-height: 1.1;
+      letter-spacing: -0.06em;
+      color: #1d1715;
+    }
+
+    .process-card p {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      color: var(--text-soft);
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .testimonial-card {
+      padding: 28px 24px 22px;
+      border-radius: 26px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.8);
+    }
+
+    .quote-mark {
+      font-size: 2.8rem;
+      line-height: 1;
+      color: rgba(247,163,90,0.8);
+      margin-bottom: 10px;
+    }
+
+    .testimonial-card p {
+      margin: 0;
+      font-size: 1.04rem;
+      line-height: 1.9;
+      color: rgba(255,255,255,0.72);
+    }
+
+    .testimonial-person {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .avatar {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(247,163,90,0.35), rgba(255,255,255,0.15));
+      color: var(--white);
+      font-weight: 800;
+    }
+
+    .testimonial-person strong {
+      display: block;
+      color: var(--white);
+      letter-spacing: -0.04em;
+    }
+
+    .testimonial-person span {
+      display: block;
+      color: rgba(255,255,255,0.62);
+      font-size: 0.88rem;
+    }
+
+    .cta-panel {
+      padding: 52px 46px;
+      border-radius: 34px;
+      background: linear-gradient(135deg, rgba(247,163,90,0.13), rgba(255,255,255,0.05));
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--white);
+    }
+
+    .cta-panel-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .cta-panel h3 {
+      margin: 0;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      line-height: 1;
+      letter-spacing: -0.08em;
+    }
+
+    .cta-panel p {
+      margin: 8px 0 0;
+      color: rgba(255,255,255,0.7);
+      font-size: 1.05rem;
+    }
+
+    .site-footer {
+      background: #101010;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 34px 0 44px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.9fr 0.9fr 1.2fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .footer-brand {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.08em;
+    }
+
+    .footer-grid h4 {
+      margin: 0 0 18px;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+    }
+
+    .footer-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .footer-contact {
+      display: grid;
+      gap: 10px;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 34px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.62);
+      font-size: 0.92rem;
+    }
+
+    .socials {
+      display: flex;
+      gap: 8px;
+    }
+
+    .socials a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--white);
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    @media (max-width: 980px) {
+      .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 16px 0;
+      }
+
+      .main-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero-inner {
+        grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr);
+      }
+
+      .about-grid,
+      .service-list,
+      .testimonial-grid,
+      .process-grid,
+      .footer-grid,
+      .cta-panel-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        margin-bottom: 0;
+      }
+
+      .hero-visual {
+        min-height: initial;
+      }
+
+      .portfolio-row {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .portfolio-row .cta {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        max-width: 100%;
+      }
+
+      .hero-card {
+        margin-left: 0;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .button,
+      .button-secondary {
+        width: 100%;
+      }
+
+      .hero-actions {
+        display: grid;
+      }
+
+      .logo-grid {
+        grid-template-columns: repeat(2, minmax(80px, 1fr));
+      }
+
+      .stat-grid,
+      .service-list,
+      .process-grid,
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .portfolio-row {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-panel {
+        padding: 36px 22px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="container nav">
+        <a href="#" class="brand" aria-label="Ritovex home">
+          <span class="brand-mark">H</span>
+          <span class="brand-name">贺昱婷</span>
+        </a>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="#about">关于我</a>
+          <a href="#services">个人定位</a>
+          <a href="#portfolio">作品集</a>
+          <a href="#process">教育背景</a>
+          <a href="#testimonials">荣誉</a>
+          <a href="#contact">联系</a>
+        </nav>
+
+        <a href="#contact" class="button">打开简历</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <p class="eyebrow">Creative Ideas That Inspire Growth</p>
+            <h1 class="site-name">贺昱婷</h1>
+            <p class="hero-intro">
+              热爱设计与教育，在视觉创作、行政协同、校园文化活动策划及品牌传播方面具备扎实基础。拥有平面设计、海报制作、活动组织与文档管理经验，能够兼顾创意表达与实际执行效率。
+            </p>
+
+            <div class="hero-actions">
+              <a href="#contact" class="button">打开简历</a>
+              <a href="#portfolio" class="button-secondary">查看作品</a>
+            </div>
+
+            <div class="hero-trust">视觉设计 · 活动策划 · 教育支持</div>
+            <div class="logo-grid" aria-label="个人标签">
+              <div class="logo-item">设计</div>
+              <div class="logo-item">策划</div>
+              <div class="logo-item">传播</div>
+              <div class="logo-item">协作</div>
+              <div class="logo-item">执行</div>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-label="个人展示图像">
+            <div class="hero-card">
+              <div class="hero-badge">+ 设计能力</div>
+              <div class="hero-card-image">
+                <img src="./证件照.jpg" alt="个人照片" />
+              </div>
+
+              <div class="mini-panel">
+                <div class="mini-panel-top">
+                  <span>个人能力</span>
+                  <span class="equals">=</span>
+                </div>
+                <div class="mini-panel-body">
+                  <div class="mini-stat">
+                    <strong>6+</strong>
+                    <span>软件熟练度</span>
+                  </div>
+                  <div class="mini-stat">
+                    <strong>3+</strong>
+                    <span>活动执行</span>
+                  </div>
+                  <div class="mini-stat">
+                    <strong>7+</strong>
+                    <span>奖项项目</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-sand" id="about">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <p class="section-kicker">Design · Communication · Planning</p>
+              <h2>关于我 <span>About Me</span></h2>
+            </div>
+          </div>
+
+          <div class="about-grid">
+            <div class="about-copy">
+              <p>
+                我具备良好的艺术审美与沟通协调能力，能够在视觉设计、文案表达与活动执行之间建立有效桥梁。大学期间参与多项设计竞赛和校园文化活动，积累了对品牌视觉、版式设计、活动策划及团队协作的理解与实践经验，注重细节与成果落地。
+              </p>
+            </div>
+
+            <div class="image-stack" aria-label="个人作品示意">
+              <figure>
+                <img class="tall" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80" alt="设计团队协作" />
+              </figure>
+              <figure>
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80" alt="创意办公环境" />
+              </figure>
+            </div>
+          </div>
+
+          <div class="stat-grid">
+            <div class="stat-card">
+              <strong>6+</strong>
+              <span>设计软件熟练度</span>
+            </div>
+            <div class="stat-card">
+              <strong>3+</strong>
+              <span>校园 / 企业活动执行</span>
+            </div>
+            <div class="stat-card">
+              <strong>7+</strong>
+              <span>竞赛获奖项目</span>
+            </div>
+            <div class="stat-card">
+              <strong>6.5</strong>
+              <span>雅思成绩</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-dark" id="services">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <p class="section-kicker">Personal Strength</p>
+              <h2>个人定位 <span>Core Capabilities</span></h2>
+            </div>
+          </div>
+
+          <div class="service-list" id="skills-list"></div>
+        </div>
+      </section>
+
+      <section class="section section-sand" id="portfolio">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <p class="section-kicker">Portfolio</p>
+              <h2>作品集 <span>Selected Works</span></h2>
+            </div>
+          </div>
+
+          <div class="portfolio-list" id="portfolio-list"></div>
+        </div>
+      </section>
+
+      <section class="section section-sand" id="process">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <p class="section-kicker">Education</p>
+              <h2>教育经历 <span>Academic Background</span></h2>
+            </div>
+          </div>
+
+          <div class="process-grid" id="education-list"></div>
+        </div>
+      </section>
+
+      <section class="section section-dark" id="testimonials">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <p class="section-kicker">Honors</p>
+              <h2>获奖与荣誉 <span>Awards &amp; Honors</span></h2>
+            </div>
+          </div>
+
+          <div class="testimonial-grid" id="honors-list"></div>
+        </div>
+      </section>
+
+      <section class="section section-dark" id="contact">
+        <div class="container">
+          <div class="cta-panel">
+            <div class="cta-panel-inner">
+              <div>
+                <h3>联系我</h3>
+                <p>欢迎交流设计、活动策划与品牌传播相关机会。</p>
+              </div>
+              <a href="mailto:heyuting2026@163.com" class="button">立即联系</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-brand">贺昱婷</div>
+            <p style="color: rgba(255,255,255,0.7); margin-top: 18px; line-height: 1.8; max-width: 330px;">
+              视觉设计 · 活动策划 · 教育支持 — 以创意与执行力提升品牌传播和项目落地体验。
+            </p>
+          </div>
+
+          <div>
+            <h4>导航</h4>
+            <ul class="footer-links">
+              <li>关于我</li>
+              <li>作品集</li>
+              <li>教育背景</li>
+              <li>荣誉</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>联系</h4>
+            <ul class="footer-links">
+              <li>邮箱</li>
+              <li>电话</li>
+              <li>城市</li>
+              <li>简历</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>Contact</h4>
+            <div class="footer-contact">
+              <span id="contact-phone">+86-17535135127</span>
+              <span id="contact-email">heyuting2026@163.com</span>
+              <span id="contact-city">香港</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span>© 2026 贺昱婷. Designed with care.</span>
+          <div class="socials" aria-label="social media">
+            <a href="mailto:heyuting2026@163.com" aria-label="Email">@</a>
+            <a href="tel:+8617535135127" aria-label="Phone">☎</a>
+            <a href="#portfolio" aria-label="Portfolio">◌</a>
+            <a href="#contact" aria-label="Contact">→</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="./site-config.js"></script>
+  <script>
+    (function () {
+      const data = window.CV_SITE_DATA || {};
+      const profile = data.profile || {};
+      const about = data.about || {};
+      const skills = Array.isArray(data.skills) ? data.skills : [];
+      const portfolio = Array.isArray(data.portfolio) ? data.portfolio : [];
+      const education = Array.isArray(data.education) ? data.education : [];
+      const honors = Array.isArray(data.honors) ? data.honors : [];
+      const contact = data.contact || {};
+      const resume = data.resume || {};
+
+      document.title = (data.meta && data.meta.siteTitle) || '贺昱婷 - 作品集与简历';
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) {
+        metaDesc.setAttribute('content', (data.meta && data.meta.description) || '个人作品集与简历');
+      }
+
+      const siteName = document.querySelector('.site-name');
+      if (siteName) siteName.textContent = profile.name || '贺昱婷';
+
+      const heroIntro = document.querySelector('.hero-intro');
+      if (heroIntro) heroIntro.textContent = profile.intro || '';
+
+      const brandName = document.querySelector('.brand-name');
+      if (brandName) brandName.textContent = profile.name || '贺昱婷';
+
+      const jobBadge = document.querySelector('.hero-trust');
+      if (jobBadge) jobBadge.textContent = profile.title || '视觉设计 · 活动策划 · 教育支持';
+
+      const resumeLink = document.querySelector('#contact a.button');
+      if (resumeLink) resumeLink.href = resume.file || '#';
+
+      const phoneEl = document.querySelector('#contact-phone');
+      const emailEl = document.querySelector('#contact-email');
+      const cityEl = document.querySelector('#contact-city');
+      if (phoneEl) phoneEl.textContent = contact.phone || '';
+      if (emailEl) emailEl.textContent = contact.email || '';
+      if (cityEl) cityEl.textContent = contact.city || '';
+
+      const skillsWrap = document.getElementById('skills-list');
+      if (skillsWrap && skills.length) {
+        skillsWrap.innerHTML = skills.map((skill, index) => `
+          <article class="service-item">
+            <div class="service-index">${String(index + 1).padStart(2, '0')}</div>
+            <div>
+              <h3>${(skill.title || '').replace(/&/g, '&amp;')}</h3>
+              <p>${(skill.items || []).join(' · ')}</p>
+            </div>
+            <span class="service-arrow">→</span>
+          </article>
+        `).join('');
+      }
+
+      const portfolioWrap = document.getElementById('portfolio-list');
+      if (portfolioWrap && portfolio.length) {
+        portfolioWrap.innerHTML = portfolio.map((item) => `
+          <article class="portfolio-row">
+            <div class="type">${item.category || 'Portfolio'}</div>
+            <div class="title">${item.title || ''}</div>
+            <div class="meta">${(item.stats && item.stats[0] && item.stats[0].value) || '作品案例'}</div>
+            <div class="cta"><a href="${item.href || '#'}" class="text-link">查看</a></div>
+          </article>
+        `).join('');
+      }
+
+      const educationWrap = document.getElementById('education-list');
+      if (educationWrap && education.length) {
+        educationWrap.innerHTML = education.map((item, index) => `
+          <article class="process-card">
+            <div class="process-icon">${index + 1}</div>
+            <span class="process-step">${item.time || ''}</span>
+            <h3>${item.name || ''}</h3>
+            <p>${item.meta || ''}<br>${item.description || ''}</p>
+          </article>
+        `).join('');
+      }
+
+      const honorsWrap = document.getElementById('honors-list');
+      if (honorsWrap && honors.length) {
+        honorsWrap.innerHTML = honors.slice(0, 3).map((item) => `
+          <article class="testimonial-card">
+            <div class="quote-mark">“</div>
+            <p>${item.text || ''}</p>
+            <div class="testimonial-person">
+              <div class="avatar">${(item.title || 'A').slice(0, 2)}</div>
+              <div>
+                <strong>${item.title || ''}</strong>
+                <span>荣誉获奖</span>
+              </div>
+            </div>
+          </article>
+        `).join('');
+      }
+    })();
+  </script>
+</body>
+</html>

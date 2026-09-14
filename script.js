@@ -58,6 +58,8 @@
   const contactData = siteData.contact || fallbackData.contact;
   const resumeData = siteData.resume || fallbackData.resume;
   const resumeFileUrl = resumeData.file || '#';
+  const portfolioAttachmentFileUrl = (portfolioData[0] && portfolioData[0].href) || resumeFileUrl;
+  const portfolioAttachmentFilename = (portfolioData[0] && portfolioData[0].filename) || (portfolioData[0] && portfolioData[0].title) || 'portfolio.pdf';
 
   const escapeHtml = (value) => String(value ?? '')
     .replace(/&/g, '&amp;')
@@ -67,7 +69,7 @@
     .replace(/'/g, '&#039;');
 
   const renderSectionHeading = (title, tag) => `
-    <div class="section-heading">
+    <div class="section-heading reveal-on-scroll">
       <h2 class="section-title">${escapeHtml(title)}</h2>
       <span class="section-tag">${escapeHtml(tag)}</span>
     </div>
@@ -76,9 +78,13 @@
   const renderTags = (items = []) => items.map((tag) => `<span>${escapeHtml(tag)}</span>`).join('');
 
   const renderHero = () => `
-    <section class="hero" id="home">
+    <section class="hero reveal-on-scroll" id="home">
       <div class="container hero-grid">
-        <div class="hero-copy">
+        <div class="hero-copy reveal-on-scroll">
+          <div class="hero-kicker">
+            <span class="chip">Brand · Design · Strategy</span>
+            <span class="chip chip-subtle">Available for opportunities</span>
+          </div>
           <p class="eyebrow">${escapeHtml(profile.title)}</p>
           <h1>${escapeHtml(profile.name)}</h1>
           <p class="lead">${escapeHtml(profile.intro)}</p>
@@ -97,15 +103,18 @@
           </ul>
           <div class="hero-metrics" aria-label="能力概览">
             ${(profile.metrics || []).map((metric) => `
-              <div class="metric-card">
-                <strong>${escapeHtml(metric.value)}</strong>
+              <div class="metric-card reveal-on-scroll" data-target="${Number(String(metric.value).replace(/[^0-9.]/g, '')) || 0}" data-suffix="${String(metric.value).includes('+') ? '+' : ''}">
+                <strong data-counter="${escapeHtml(metric.value)}">0</strong>
                 <span>${escapeHtml(metric.label)}</span>
               </div>
             `).join('')}
           </div>
         </div>
 
-        <div class="hero-panel" aria-label="个人信息卡片" style="display:none;">
+        <div class="hero-panel" aria-label="个人信息卡片">
+          <div class="profile-photo-wrap">
+            <img class="profile-photo" src="./证件照.jpg" alt="个人照片" />
+          </div>
           <div class="profile-badge">HYT</div>
           <div class="profile-card">
             <h3>个人信息</h3>
@@ -121,10 +130,10 @@
   `;
 
   const renderAbout = () => `
-    <section class="panel" id="about">
+    <section class="panel reveal-on-scroll" id="about">
       <div class="container">
         ${renderSectionHeading(about.title, about.tag)}
-        <div class="card">
+        <div class="card reveal-on-scroll">
           <p>${escapeHtml(about.description)}</p>
           <div class="tags">
             ${renderTags(profile.summaryTags || [])}
@@ -148,7 +157,7 @@
   `;
 
   const renderPortfolioItemCard = (item) => `
-    <article class="portfolio-card">
+    <article class="portfolio-card reveal-on-scroll">
       <div class="portfolio-card__meta">
         <span class="card-tag">${escapeHtml(item.category || 'Project')}</span>
         <span class="card-type">${escapeHtml(item.type || 'Case Study')}</span>
@@ -161,7 +170,6 @@
       <div class="portfolio-card__footer">
         ${(item.stats || []).map((stat) => `<small>${escapeHtml(stat.label)}：${escapeHtml(stat.value)}</small>`).join('')}
       </div>
-      <a class="text-link" href="${escapeHtml(item.href || '#')}">${escapeHtml(item.actionLabel || '查看详情')} →</a>
     </article>
   `;
 
@@ -170,12 +178,12 @@
     const secondary = portfolioData.slice(1);
 
     return `
-      <section class="panel" id="portfolio">
+      <section class="panel reveal-on-scroll" id="portfolio">
         <div class="container">
           ${renderSectionHeading('作品集', 'Portfolio showcase')}
 
           ${featured ? `
-            <article class="portfolio-feature">
+            <article class="portfolio-feature reveal-on-scroll">
               <div class="portfolio-feature__info">
                 <h3>${escapeHtml(featured.title)}</h3>
                 <p>${escapeHtml(featured.description || '')}</p>
@@ -183,7 +191,7 @@
                   ${renderTags(featured.tags || [])}
                 </div>
                 <div class="portfolio-actions">
-                  <a class="btn primary" href="${escapeHtml(featured.href || resumeFileUrl)}" target="_blank" rel="noreferrer" download="${escapeHtml(resumeData.filename || 'resume.pdf')}">${escapeHtml(featured.actionLabel || '打开附件')}</a>
+                  <a class="btn primary" href="${escapeHtml(featured.href || portfolioAttachmentFileUrl)}" target="_blank" rel="noreferrer" download="${escapeHtml(featured.filename || portfolioAttachmentFilename || 'portfolio.pdf')}">${escapeHtml(featured.actionLabel || '打开附件')}</a>
                   <a class="btn" href="#atb-detail">作品详情</a>
                 </div>
               </div>
@@ -197,15 +205,12 @@
               </div>
             </article>
 
-            <article class="portfolio-cover" aria-label="作品封面页">
+            <article class="portfolio-cover reveal-on-scroll" aria-label="作品封面页">
               <div class="cover-content">
                 <div class="cover-header">
-                  <span>Portfolio</span>
-                  <span>${escapeHtml(featured.type || 'ATB')}</span>
                 </div>
                 <div class="cover-body">
                   <div>
-                    <p class="cover-kicker">Creative portfolio</p>
                     <h3>${escapeHtml(featured.coverTitle || featured.title)}</h3>
                   </div>
                   <div class="cover-meta">
@@ -222,9 +227,9 @@
               </div>
             </article>
 
-            <div class="portfolio-detail" id="atb-detail">
+            <div class="portfolio-detail reveal-on-scroll" id="atb-detail">
               <div class="detail-card">
-                <span class="detail-label">作品故事</span>
+                <span class="detail-label">故事前析</span>
                 <p>${escapeHtml(featured.story || '')}</p>
               </div>
               <div class="detail-card">
@@ -235,7 +240,7 @@
               </div>
             </div>
 
-            <div class="portfolio-showcase">
+            <div class="portfolio-showcase reveal-on-scroll">
               ${(featured.showcase || []).map((item, index) => `
                 <article class="showcase-card">
                   <span class="showcase-index">0${index + 1}</span>
@@ -245,24 +250,23 @@
               `).join('')}
             </div>
 
-            <div class="portfolio-preview" aria-label="作品集附件预览">
+            <div class="portfolio-preview reveal-on-scroll" aria-label="作品集附件预览">
               <div class="preview-header">
                 <div class="preview-header__title">
                   <span class="detail-label">附件预览</span>
                   <h3>${escapeHtml(featured.title)}</h3>
                   <div class="preview-meta">
-                    <span class="preview-badge">PDF</span>
-                    <span>${escapeHtml(resumeData.filename || 'resume.pdf')}</span>
+                    <span>${escapeHtml(featured.filename || portfolioAttachmentFilename || 'portfolio.pdf')}</span>
                   </div>
                 </div>
                 <div class="preview-actions">
-                  <a class="btn primary" href="${escapeHtml(resumeFileUrl)}" target="_blank" rel="noreferrer">打开附件</a>
-                  <a class="btn" href="${escapeHtml(resumeFileUrl)}" download="${escapeHtml(resumeData.filename || 'resume.pdf')}">下载</a>
+                  <a class="btn primary" href="${escapeHtml(featured.href || portfolioAttachmentFileUrl)}" target="_blank" rel="noreferrer">打开附件</a>
+                  <a class="btn" href="${escapeHtml(featured.href || portfolioAttachmentFileUrl)}" download="${escapeHtml(featured.filename || portfolioAttachmentFilename || 'portfolio.pdf')}">下载</a>
                 </div>
               </div>
               <div class="pdf-preview-wrapper">
-                <object class="pdf-preview-frame" data="${escapeHtml(resumeFileUrl)}" type="application/pdf" title="作品集附件预览">
-                  <p>浏览器无法直接预览此 PDF，<a href="${escapeHtml(resumeFileUrl)}" target="_blank" rel="noreferrer">请在新标签页打开</a>。</p>
+                <object class="pdf-preview-frame" data="${escapeHtml(featured.href || portfolioAttachmentFileUrl)}" type="application/pdf" title="作品集附件预览">
+                  <p>浏览器无法直接预览此 PDF，<a href="${escapeHtml(featured.href || portfolioAttachmentFileUrl)}" target="_blank" rel="noreferrer">请在新标签页打开</a>。</p>
                 </object>
               </div>
             </div>
@@ -277,12 +281,12 @@
   };
 
   const renderEducation = () => `
-    <section class="panel" id="education">
+    <section class="panel reveal-on-scroll" id="education">
       <div class="container">
         ${renderSectionHeading('教育经历', '学习背景')}
         <div class="timeline">
           ${(educationData || []).map((item) => `
-            <article class="timeline-item">
+            <article class="timeline-item reveal-on-scroll">
               <div class="time">${escapeHtml(item.time)}</div>
               <div>
                 <h3>${escapeHtml(item.name)}</h3>
@@ -297,12 +301,12 @@
   `;
 
   const renderExperience = () => `
-    <section class="panel" id="experience">
+    <section class="panel reveal-on-scroll" id="experience">
       <div class="container">
         ${renderSectionHeading('工作经历', '实践积累')}
         <div class="timeline">
           ${(experienceData || []).map((item) => `
-            <article class="timeline-item">
+            <article class="timeline-item reveal-on-scroll">
               <div class="time">${escapeHtml(item.time)}</div>
               <div>
                 <h3>${escapeHtml(item.company)}</h3>
@@ -319,12 +323,12 @@
   `;
 
   const renderHonors = () => `
-    <section class="panel" id="honors">
+    <section class="panel reveal-on-scroll" id="honors">
       <div class="container">
         ${renderSectionHeading('荣誉与奖项', '竞赛与荣誉')}
         <div class="honors-grid">
           ${(honorsData || []).map((item) => `
-            <article class="honor-item">
+            <article class="honor-item reveal-on-scroll">
               <h3>${escapeHtml(item.title)}</h3>
               <p>${escapeHtml(item.text)}</p>
             </article>
@@ -335,12 +339,12 @@
   `;
 
   const renderSkills = () => `
-    <section class="panel" id="skills">
+    <section class="panel reveal-on-scroll" id="skills">
       <div class="container">
         ${renderSectionHeading('技能与资质', '能力概览')}
         <div class="skills-grid">
           ${(skillsData || []).map((skillGroup) => `
-            <div class="skill-box">
+            <div class="skill-box reveal-on-scroll">
               <h3>${escapeHtml(skillGroup.title)}</h3>
               <ul>
                 ${(skillGroup.items || []).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
@@ -353,11 +357,11 @@
   `;
 
   const renderContact = () => `
-    <section class="panel" id="contact">
+    <section class="panel reveal-on-scroll" id="contact">
       <div class="container">
         ${renderSectionHeading('联系方式', 'Get in touch')}
         <div class="contact-grid">
-          <form class="contact-form" id="contactForm">
+          <form class="contact-form reveal-on-scroll" id="contactForm">
             <h3>留言</h3>
             <label>姓名
               <input type="text" name="name" placeholder="请输入您的姓名" required>
@@ -372,10 +376,9 @@
               <button class="btn primary" type="submit">发送</button>
               <button class="btn" type="button" data-copy-email>复制邮箱</button>
             </div>
-            <p class="muted note">此表单为演示，如需真实投递请接入邮件服务或个人站点后端。</p>
           </form>
 
-          <div class="info-card">
+          <div class="info-card reveal-on-scroll">
             <h3>直接联系</h3>
             <ul class="contact-list">
               <li><span>手机</span><strong>${escapeHtml(contactData.phone || '')}</strong></li>
@@ -409,6 +412,56 @@
     ];
 
     app.innerHTML = sections.map((sectionRenderer) => sectionRenderer()).join('');
+
+    if (!document.getElementById('siteToast')) {
+      document.body.insertAdjacentHTML('beforeend', '<div id="siteToast" class="site-toast" aria-live="polite"></div>');
+    }
+  };
+
+  const showToast = (message) => {
+    const toast = document.getElementById('siteToast');
+    if (!toast) return;
+    toast.textContent = message;
+    toast.classList.add('visible');
+    clearTimeout(showToast.timeoutId);
+    showToast.timeoutId = setTimeout(() => {
+      toast.classList.remove('visible');
+    }, 1800);
+  };
+
+  const initializeRevealAndMotion = () => {
+    const revealItems = document.querySelectorAll('.reveal-on-scroll');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    revealItems.forEach((item) => observer.observe(item));
+
+    const counterNodes = document.querySelectorAll('[data-counter]');
+    counterNodes.forEach((node) => {
+      const target = Number(node.getAttribute('data-counter').replace(/[^0-9.]/g, '')) || 0;
+      const suffix = node.getAttribute('data-counter').includes('+') ? '+' : '';
+      const startValue = 0;
+      const duration = 900;
+      const start = performance.now();
+
+      const tick = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = startValue + (target - startValue) * eased;
+        node.textContent = `${Math.round(value)}${suffix}`;
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        }
+      };
+
+      requestAnimationFrame(tick);
+    });
   };
 
   const initializeNavigation = () => {
@@ -428,6 +481,31 @@
         });
       });
     }
+
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav a');
+    const activeMap = new Map();
+    navLinks.forEach((link) => {
+      const targetId = link.getAttribute('href')?.replace('#', '');
+      if (targetId) activeMap.set(targetId, link);
+    });
+
+    const highlightNav = () => {
+      let activeId = 'home';
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 180 && rect.bottom >= 180) {
+          activeId = section.id;
+        }
+      });
+      navLinks.forEach((link) => {
+        const isActive = link.getAttribute('href') === `#${activeId}`;
+        link.classList.toggle('active', isActive);
+      });
+    };
+
+    window.addEventListener('scroll', highlightNav, { passive: true });
+    highlightNav();
   };
 
   const initializeContactForm = () => {
@@ -437,7 +515,7 @@
         event.preventDefault();
         const nameField = contactForm.querySelector('input[name="name"]');
         const name = nameField && nameField.value.trim() ? nameField.value.trim() : '访客';
-        alert(`感谢 ${name}，我已收到您的留言。`);
+        showToast(`感谢 ${name}，我已收到您的留言。`);
         contactForm.reset();
       });
     }
@@ -450,11 +528,13 @@
           await navigator.clipboard.writeText(email);
           const original = copyButton.textContent;
           copyButton.textContent = '已复制';
+          showToast('邮箱已复制到剪贴板');
           setTimeout(() => {
             copyButton.textContent = original;
           }, 1200);
         } catch (error) {
           copyButton.textContent = '复制失败';
+          showToast('复制失败，请手动复制邮箱');
           setTimeout(() => {
             copyButton.textContent = '复制邮箱';
           }, 1200);
@@ -473,6 +553,7 @@
   }
 
   renderApp();
+  initializeRevealAndMotion();
   initializeNavigation();
   initializeContactForm();
 })();

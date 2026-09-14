@@ -1,5 +1,7 @@
 (function () {
-  const resumeFileName = 'Atb 作品集_compressed.pdf';
+  const portfolioAttachmentFileName = 'Atb 作品集_compressed.pdf';
+  const portfolioAttachmentFileUrl = `./${encodeURIComponent(portfolioAttachmentFileName)}`;
+  const resumeFileName = '贺昱婷 3062566.pdf';
   const resumeFileUrl = `./${encodeURIComponent(resumeFileName)}`;
 
   window.CV_SITE_DATA = {
@@ -22,7 +24,7 @@
       metrics: [
         { value: '6+', label: '设计软件熟练度' },
         { value: '3+', label: '校园/企业活动执行' },
-        { value: '2', label: '竞赛获奖项目' }
+        { value: '7+', label: '竞赛获奖项目' }
       ],
       personal: [
         { label: '姓名', value: '贺昱婷' },
@@ -42,10 +44,11 @@
         title: 'ATB 作品集附件',
         coverTitle: 'ATB Portfolio',
         category: 'Portfolio Attachment',
-        description: '整合品牌视觉、活动策划、传播物料与项目叙事的完整作品集，适合用于面试、校招、岗位申请及作品展示。',
+        description: '整合品牌视觉、活动策划、传播物料与项目叙事的完整作品集。',
         tags: ['品牌视觉', '创意项目', '活动策划', '传播设计'],
         actionLabel: '打开附件',
-        href: resumeFileUrl,
+        href: portfolioAttachmentFileUrl,
+        filename: portfolioAttachmentFileName,
         type: 'PDF',
         stats: [
           { label: '格式', value: 'pdf' },
