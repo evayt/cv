@@ -255,19 +255,19 @@
 
     .hero-visual {
       position: relative;
-      min-height: 720px;
+      min-height: 600px;
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       justify-content: center;
       width: 100%;
     }
 
     .hero-card {
       position: relative;
-      width: min(100%, 460px);
-      min-height: 620px;
+      width: min(100%, 360px);
+      min-height: 500px;
       margin-left: auto;
-      padding: 18px 18px 14px;
+      padding: 12px 12px 12px;
       background: linear-gradient(180deg, rgba(24, 22, 20, 0.8), rgba(31, 27, 25, 0.96));
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 36px;
@@ -290,8 +290,8 @@
       position: relative;
       z-index: 1;
       width: 100%;
-      height: clamp(320px, 42vw, 480px);
-      border-radius: 30px;
+      height: clamp(280px, 34vw, 420px);
+      border-radius: 28px;
       overflow: hidden;
       background: #d9d4d0;
     }
@@ -300,6 +300,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center 18%;
     }
 
     .hero-badge {
@@ -566,19 +567,6 @@
       font-size: 1.02rem;
     }
 
-    .service-arrow {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      font-size: 1.2rem;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: var(--orange-3);
-    }
-
     .portfolio-list {
       display: grid;
       gap: 18px;
@@ -820,9 +808,13 @@
 
     .footer-grid {
       display: grid;
-      grid-template-columns: 1.4fr 0.9fr 0.9fr 1.2fr;
+      grid-template-columns: 1.8fr 0.9fr 0.9fr 0.8fr;
       gap: 28px;
       align-items: start;
+    }
+
+    .footer-intro {
+      min-width: 0;
     }
 
     .footer-brand {
@@ -831,27 +823,59 @@
       letter-spacing: -0.08em;
     }
 
-    .footer-grid h4 {
-      margin: 0 0 18px;
-      font-size: 0.9rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.55);
-    }
-
-    .footer-links {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      gap: 12px;
+    .footer-intro p {
+      margin: 18px 0 0;
       color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+      max-width: 330px;
     }
 
-    .footer-contact {
+    .footer-grid {
       display: grid;
-      gap: 10px;
-      color: rgba(255,255,255,0.75);
+      grid-template-columns: 1.8fr 1.2fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .footer-intro {
+      min-width: 0;
+    }
+
+    .footer-intro p {
+      margin: 18px 0 0;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+      max-width: 330px;
+    }
+
+    .footer-contact-stack {
+      display: grid;
+      align-content: center;
+      gap: 12px;
+      min-height: 120px;
+    }
+
+    .footer-contact-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      min-height: 28px;
+    }
+
+    .footer-label {
+      color: rgba(255,255,255,0.64);
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.5;
+      white-space: nowrap;
+    }
+
+    .footer-value {
+      color: rgba(255,255,255,0.9);
+      line-height: 1.7;
+      word-break: break-word;
     }
 
     .footer-bottom {
@@ -1026,7 +1050,6 @@
 
           <div class="hero-visual" aria-label="个人展示图像">
             <div class="hero-card">
-              <div class="hero-badge">+ 设计能力</div>
               <div class="hero-card-image">
                 <img src="./证件照.jpg" alt="个人照片" />
               </div>
@@ -1074,10 +1097,10 @@
 
             <div class="image-stack" aria-label="个人作品示意">
               <figure>
-                <img class="tall" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80" alt="设计团队协作" />
+                <img class="tall" src="./p1.jpg" alt="设计团队协作" />
               </figure>
               <figure>
-                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80" alt="创意办公环境" />
+                <img src="./p2.jpg" alt="创意办公环境" />
               </figure>
             </div>
           </div>
@@ -1173,39 +1196,25 @@
     <footer class="site-footer">
       <div class="container">
         <div class="footer-grid">
-          <div>
+          <div class="footer-intro">
             <div class="footer-brand">贺昱婷</div>
-            <p style="color: rgba(255,255,255,0.7); margin-top: 18px; line-height: 1.8; max-width: 330px;">
+            <p>
               视觉设计 · 活动策划 · 教育支持 — 以创意与执行力提升品牌传播和项目落地体验。
             </p>
           </div>
 
-          <div>
-            <h4>导航</h4>
-            <ul class="footer-links">
-              <li>关于我</li>
-              <li>作品集</li>
-              <li>教育背景</li>
-              <li>荣誉</li>
-            </ul>
-          </div>
-
-          <div>
-            <h4>联系</h4>
-            <ul class="footer-links">
-              <li>邮箱</li>
-              <li>电话</li>
-              <li>城市</li>
-              <li>简历</li>
-            </ul>
-          </div>
-
-          <div>
-            <h4>Contact</h4>
-            <div class="footer-contact">
-              <span id="contact-phone">+86-17535135127</span>
-              <span id="contact-email">heyuting2026@163.com</span>
-              <span id="contact-city">香港</span>
+          <div class="footer-contact-stack">
+            <div class="footer-contact-row">
+              <span class="footer-label">邮箱</span>
+              <span id="contact-email" class="footer-value">heyuting2026@163.com</span>
+            </div>
+            <div class="footer-contact-row">
+              <span class="footer-label">电话</span>
+              <span id="contact-phone" class="footer-value">+86-17535135127</span>
+            </div>
+            <div class="footer-contact-row">
+              <span class="footer-label">Base</span>
+              <span id="contact-city" class="footer-value">香港</span>
             </div>
           </div>
         </div>
@@ -1287,7 +1296,6 @@
               <h3>${(skill.title || '').replace(/&/g, '&amp;')}</h3>
               <p>${(skill.items || []).join(' · ')}</p>
             </div>
-            <span class="service-arrow">→</span>
           </article>
         `).join('');
       }
@@ -1318,12 +1326,11 @@
 
       const honorsWrap = document.getElementById('honors-list');
       if (honorsWrap && honors.length) {
-        honorsWrap.innerHTML = honors.slice(0, 3).map((item) => `
+        honorsWrap.innerHTML = honors.map((item) => `
           <article class="testimonial-card">
             <div class="quote-mark">“</div>
             <p>${item.text || ''}</p>
             <div class="testimonial-person">
-              <div class="avatar">${(item.title || 'A').slice(0, 2)}</div>
               <div>
                 <strong>${item.title || ''}</strong>
                 <span>荣誉获奖</span>
